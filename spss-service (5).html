@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SPSSPro – Dịch Vụ Phân Tích Số Liệu & Khảo Sát Chuyên Nghiệp</title>
+
+<style>
+:root{--deep:#060b22;--accent:#00e5ff;--gold:#f5c842;--soft:#a8b4d8;--card:rgba(255,255,255,0.04);--border:rgba(0,229,255,0.15);--grad2:#7b5ea7;}
+*{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}
+body{background:var(--deep);color:#e8edf8;font-family:'Segoe UI',Arial,sans-serif;min-height:100vh;overflow-x:hidden;}
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(0,229,255,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(0,229,255,0.04) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;z-index:0;}
+.orb{position:fixed;border-radius:50%;filter:blur(120px);pointer-events:none;z-index:0;}
+.orb-1{width:500px;height:500px;background:rgba(0,229,255,0.07);top:-100px;left:-150px;}
+.orb-2{width:400px;height:400px;background:rgba(123,94,167,0.09);bottom:100px;right:-100px;}
+.orb-3{width:300px;height:300px;background:rgba(245,200,66,0.05);top:50%;left:50%;transform:translate(-50%,-50%);}
+/* HEADER */
+header{position:sticky;top:0;z-index:100;padding:18px 40px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);backdrop-filter:blur(16px);background:rgba(6,11,34,0.85);}
+.logo{font-family:'Segoe UI',Arial,sans-serif;font-weight:800;font-size:1.4rem;color:#fff;}.logo span{color:var(--accent);}
+.header-right{display:flex;align-items:center;gap:12px;}
+.badge{background:rgba(0,229,255,0.1);border:1px solid var(--border);color:var(--accent);font-size:0.72rem;font-weight:500;padding:4px 12px;border-radius:20px;letter-spacing:1px;text-transform:uppercase;}
+.header-cta{background:linear-gradient(135deg,var(--accent),#007aff);color:var(--deep);font-family:'Segoe UI',Arial,sans-serif;font-size:0.78rem;font-weight:700;padding:8px 18px;border-radius:20px;border:none;cursor:pointer;letter-spacing:0.5px;transition:all .3s;}
+.header-cta:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(0,229,255,.3);}
+/* HERO */
+.hero{position:relative;z-index:2;text-align:center;padding:90px 20px 50px;}
+.hero-tag{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,rgba(0,229,255,.12),rgba(123,94,167,.12));border:1px solid var(--border);border-radius:30px;padding:6px 20px;font-size:.8rem;color:var(--accent);letter-spacing:2px;text-transform:uppercase;margin-bottom:24px;font-weight:500;}
+.blink{width:7px;height:7px;border-radius:50%;background:var(--accent);animation:blink 1.2s infinite;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:.2;}}
+.hero h1{font-family:'Segoe UI',Arial,sans-serif;font-size:clamp(2.4rem,5vw,4rem);font-weight:800;line-height:1.08;margin-bottom:20px;background:linear-gradient(135deg,#fff 0%,var(--accent) 55%,var(--gold) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.hero p{font-size:1.05rem;color:var(--soft);max-width:580px;margin:0 auto 36px;font-weight:300;line-height:1.75;}
+.hero-btns{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;}
+.btn-main{background:linear-gradient(135deg,var(--accent),#007aff);color:var(--deep);font-family:'Segoe UI',Arial,sans-serif;font-weight:700;font-size:.95rem;padding:14px 32px;border-radius:14px;border:none;cursor:pointer;letter-spacing:.5px;transition:all .3s;}
+.btn-main:hover{transform:translateY(-3px);box-shadow:0 14px 40px rgba(0,229,255,.35);}
+.btn-ghost{background:transparent;color:#fff;font-family:'Segoe UI',Arial,sans-serif;font-weight:600;font-size:.95rem;padding:14px 28px;border-radius:14px;border:1.5px solid rgba(255,255,255,.2);cursor:pointer;transition:all .3s;}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent);}
+/* STATS */
+.stats-bar{position:relative;z-index:2;display:flex;justify-content:center;flex-wrap:wrap;max-width:700px;margin:40px auto 60px;background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:20px;overflow:hidden;}
+.stat-item{flex:1;min-width:140px;text-align:center;padding:22px 16px;border-right:1px solid var(--border);}
+.stat-item:last-child{border-right:none;}
+.stat-num{font-family:'Segoe UI',Arial,sans-serif;font-size:1.8rem;font-weight:800;background:linear-gradient(135deg,var(--accent),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.stat-label{font-size:.78rem;color:var(--soft);margin-top:4px;}
+/* CHIPS */
+.services{display:flex;justify-content:center;flex-wrap:wrap;gap:10px;margin-bottom:60px;position:relative;z-index:2;}
+.chip{display:flex;align-items:center;gap:8px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:10px 18px;font-size:.85rem;color:var(--soft);transition:all .3s;}
+.chip:hover{border-color:var(--accent);color:#fff;transform:translateY(-2px);}
+.chip .dot{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 8px var(--accent);}
+.chip .dot.gold{background:var(--gold);box-shadow:0 0 8px var(--gold);}
+.chip .dot.purple{background:#a87fd6;box-shadow:0 0 8px #a87fd6;}
+/* SECTION */
+.section-wrap{position:relative;z-index:2;max-width:960px;margin:0 auto 70px;padding:0 20px;}
+.sec-title{font-family:'Segoe UI',Arial,sans-serif;font-size:clamp(1.5rem,3vw,2rem);font-weight:800;color:#fff;text-align:center;margin-bottom:8px;}
+.sec-sub{font-size:.88rem;color:var(--soft);text-align:center;margin-bottom:40px;}
+/* PRICING */
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+.price-card{background:rgba(255,255,255,.03);border:1px solid rgba(168,180,216,.15);border-radius:20px;padding:28px 24px;position:relative;transition:transform .3s,box-shadow .3s;overflow:hidden;}
+.price-card:hover{transform:translateY(-5px);box-shadow:0 20px 50px rgba(0,0,0,.3);}
+.price-card.featured{border-color:var(--accent);background:rgba(0,229,255,.05);}
+.price-card.featured::before,.price-card.survey::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;}
+.price-card.featured::before{background:linear-gradient(90deg,var(--accent),var(--gold));}
+.price-card.survey{border-color:rgba(245,200,66,.3);background:rgba(245,200,66,.03);}
+.price-card.survey::before{background:linear-gradient(90deg,var(--gold),#f5a623);}
+.best-tag{display:inline-block;background:linear-gradient(135deg,var(--accent),#007aff);color:var(--deep);font-size:.68rem;font-weight:800;padding:3px 10px;border-radius:20px;text-transform:uppercase;letter-spacing:1px;margin-bottom:14px;}
+.price-icon{font-size:2rem;margin-bottom:12px;display:block;}
+.price-name{font-family:'Segoe UI',Arial,sans-serif;font-size:1rem;font-weight:700;color:#fff;margin-bottom:6px;}
+.price-desc{font-size:.78rem;color:var(--soft);line-height:1.6;margin-bottom:18px;min-height:52px;}
+.price-amount{font-family:'Segoe UI',Arial,sans-serif;font-size:2rem;font-weight:800;color:#fff;line-height:1;}
+.price-card.featured .price-amount{color:var(--accent);}
+.price-card.survey .price-amount{color:var(--gold);}
+.price-unit{font-size:.78rem;color:var(--soft);margin-top:4px;}
+.price-divider{height:1px;background:rgba(168,180,216,.1);margin:18px 0;}
+.price-features{list-style:none;display:flex;flex-direction:column;gap:8px;}
+.price-features li{font-size:.82rem;color:#c0cce8;display:flex;align-items:flex-start;gap:8px;line-height:1.5;}
+.price-features li .check{color:var(--accent);font-size:.85rem;margin-top:1px;flex-shrink:0;}
+.price-card.survey .price-features li .check{color:var(--gold);}
+.price-card-btn{width:100%;margin-top:20px;background:transparent;border:1.5px solid var(--accent);color:var(--accent);font-family:'Segoe UI',Arial,sans-serif;font-size:.82rem;font-weight:700;padding:10px;border-radius:10px;cursor:pointer;transition:all .3s;}
+.price-card.featured .price-card-btn{background:linear-gradient(135deg,var(--accent),#007aff);color:var(--deep);border:none;}
+.price-card.survey .price-card-btn{border-color:var(--gold);color:var(--gold);}
+.price-card-btn:hover{transform:translateY(-2px);}
+/* COMPARE */
+.compare-wrap{overflow-x:auto;}
+.compare-table{width:100%;border-collapse:collapse;font-size:.85rem;}
+.compare-table th{background:rgba(255,255,255,.05);padding:14px 18px;text-align:center;font-family:'Segoe UI',Arial,sans-serif;font-weight:700;border-bottom:1px solid var(--border);color:#fff;}
+.compare-table th:first-child{text-align:left;color:var(--soft);}
+.compare-table td{padding:13px 18px;border-bottom:1px solid rgba(168,180,216,.07);text-align:center;color:var(--soft);}
+.compare-table td:first-child{text-align:left;color:#c8d4f0;}
+.compare-table tr:last-child td{border-bottom:none;}
+.compare-table .ck{color:var(--accent);font-size:1.1rem;}
+.compare-table .ck-gold{color:var(--gold);font-size:1.1rem;}
+.compare-table .xx{color:rgba(168,180,216,.3);}
+.compare-table .hi{background:rgba(0,229,255,.04);}
+.compare-table tr:hover td{background:rgba(255,255,255,.02);}
+/* WHY */
+.why-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
+.why-card{background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:18px;padding:24px 22px;display:flex;gap:16px;align-items:flex-start;transition:all .3s;}
+.why-card:hover{border-color:rgba(0,229,255,.3);transform:translateY(-2px);}
+.why-icon{font-size:1.8rem;flex-shrink:0;margin-top:2px;}
+.why-title{font-family:'Segoe UI',Arial,sans-serif;font-size:.95rem;font-weight:700;color:#fff;margin-bottom:6px;}
+.why-text{font-size:.82rem;color:var(--soft);line-height:1.6;}
+/* TESTI */
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.testi-card{background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:18px;padding:24px 22px;position:relative;transition:all .3s;}
+.testi-card:hover{border-color:rgba(0,229,255,.25);transform:translateY(-2px);}
+.testi-quote{font-size:2.5rem;color:var(--accent);opacity:.2;position:absolute;top:14px;right:18px;font-family:Georgia,serif;line-height:1;}
+.testi-text{font-size:.87rem;color:#c8d4f0;line-height:1.7;margin-bottom:18px;font-style:italic;}
+.testi-stars{color:var(--gold);font-size:.85rem;margin-bottom:14px;letter-spacing:2px;}
+.testi-author{display:flex;align-items:center;gap:10px;}
+.testi-avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--grad2));display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;color:var(--deep);flex-shrink:0;}
+.testi-name{font-size:.85rem;font-weight:600;color:#fff;}
+.testi-role{font-size:.75rem;color:var(--soft);}
+/* COUNTDOWN */
+.countdown-bar{position:relative;z-index:2;max-width:700px;margin:0 auto 60px;padding:0 20px;}
+.countdown-inner{background:linear-gradient(135deg,rgba(245,200,66,.08),rgba(245,200,66,.03));border:1px solid rgba(245,200,66,.25);border-radius:18px;padding:20px 28px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;}
+.cd-label{font-size:.88rem;color:#e8d882;font-weight:500;display:flex;align-items:center;gap:8px;}
+.cd-timer{display:flex;gap:12px;align-items:center;}
+.cd-block{text-align:center;}
+.cd-num{font-family:'Segoe UI',Arial,sans-serif;font-size:1.6rem;font-weight:800;color:var(--gold);line-height:1;background:rgba(0,0,0,.3);padding:6px 12px;border-radius:8px;min-width:50px;display:block;}
+.cd-unit{font-size:.65rem;color:var(--soft);text-transform:uppercase;letter-spacing:1px;margin-top:4px;}
+.cd-sep{font-size:1.4rem;color:var(--gold);font-weight:700;margin-bottom:12px;}
+/* FORM */
+.form-wrap{position:relative;z-index:2;max-width:820px;margin:0 auto 80px;padding:0 20px;}
+.form-card{background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:24px;padding:48px;backdrop-filter:blur(20px);position:relative;overflow:hidden;}
+.form-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--accent),var(--gold),transparent);}
+.form-title{font-family:'Segoe UI',Arial,sans-serif;font-size:1.5rem;font-weight:700;margin-bottom:6px;color:#fff;}
+.form-sub{font-size:.88rem;color:var(--soft);margin-bottom:32px;}
+/* PKG */
+.pkg-label{font-size:.78rem;font-weight:600;color:var(--soft);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:12px;}
+.pkg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:32px;}
+.pkg-option{border:1.5px solid rgba(168,180,216,.18);border-radius:14px;padding:16px 14px;cursor:pointer;transition:all .25s;background:rgba(255,255,255,.025);text-align:center;position:relative;user-select:none;}
+.pkg-option:hover{border-color:rgba(0,229,255,.4);transform:translateY(-2px);}
+.pkg-option.active-full{border-color:var(--accent);background:rgba(0,229,255,.07);box-shadow:0 0 20px rgba(0,229,255,.12);}
+.pkg-option.active-lite{border-color:#a87fd6;background:rgba(168,127,214,.07);box-shadow:0 0 20px rgba(168,127,214,.12);}
+.pkg-option.active-tools{border-color:var(--gold);background:rgba(245,200,66,.07);box-shadow:0 0 20px rgba(245,200,66,.12);}
+.pkg-icon{font-size:1.5rem;margin-bottom:8px;}
+.pkg-name{font-family:'Segoe UI',Arial,sans-serif;font-size:.82rem;font-weight:700;color:#fff;margin-bottom:4px;}
+.pkg-price{font-size:.95rem;font-weight:700;color:var(--soft);}
+.pkg-option.active-full .pkg-price{color:var(--accent);}
+.pkg-option.active-lite .pkg-price{color:#c49ef5;}
+.pkg-option.active-tools .pkg-price{color:var(--gold);}
+.pkg-check{position:absolute;top:8px;right:8px;width:18px;height:18px;border-radius:50%;display:none;align-items:center;justify-content:center;font-size:.6rem;color:var(--deep);font-weight:900;}
+.active-full .pkg-check{display:flex;background:var(--accent);}
+.active-lite .pkg-check{display:flex;background:#a87fd6;}
+.active-tools .pkg-check{display:flex;background:var(--gold);}
+/* FIELDS */
+.fields-section{display:none;animation:fadeIn .35s ease;}
+.fields-section.visible{display:block;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
+.step{margin-bottom:24px;}
+.step-label{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
+.step-num{width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--grad2));display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;color:var(--deep);flex-shrink:0;}
+label{font-size:.88rem;font-weight:500;color:#c8d4f0;letter-spacing:.3px;}
+input[type="text"],input[type="number"],input[type="url"],select,textarea{width:100%;background:rgba(255,255,255,.05);border:1px solid rgba(168,180,216,.2);border-radius:12px;padding:13px 18px;color:#fff;font-family:'Segoe UI',Arial,sans-serif;font-size:.93rem;outline:none;transition:all .25s;}
+textarea{resize:vertical;min-height:90px;line-height:1.6;}
+input::placeholder,textarea::placeholder{color:rgba(168,180,216,.4);}
+input:focus,select:focus,textarea:focus{border-color:var(--accent);background:rgba(0,229,255,.05);box-shadow:0 0 0 3px rgba(0,229,255,.08);}
+select option{background:#0d1235;}
+.var-container{display:flex;flex-direction:column;gap:14px;margin-top:14px;}
+.var-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;background:rgba(255,255,255,.025);border:1px solid rgba(168,180,216,.1);border-radius:14px;padding:16px 18px;animation:fadeIn .3s ease;}
+.var-row-header{grid-column:1/-1;font-size:.78rem;color:var(--accent);font-weight:600;letter-spacing:1px;text-transform:uppercase;display:flex;align-items:center;gap:6px;margin-bottom:2px;}
+.var-row-header::after{content:'';flex:1;height:1px;background:var(--border);}
+.field-group{display:flex;flex-direction:column;gap:6px;}
+.field-group label{font-size:.78rem;color:var(--soft);}
+/* DEADLINE */
+.deadline-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;}
+.dl-opt{border:1.5px solid rgba(168,180,216,.18);border-radius:12px;padding:14px;cursor:pointer;transition:all .25s;background:rgba(255,255,255,.025);text-align:center;user-select:none;}
+.dl-opt:hover{border-color:rgba(0,229,255,.3);}
+.dl-opt.active{border-color:var(--accent);background:rgba(0,229,255,.07);}
+.dl-opt.urgent.active{border-color:#ff6464;background:rgba(255,100,100,.07);}
+.dl-name{font-size:.85rem;font-weight:600;color:#fff;margin-bottom:3px;}
+.dl-note{font-size:.72rem;color:var(--soft);}
+.dl-opt.urgent .dl-note{color:#ffaaaa;}
+/* TOGGLE */
+.toggle-opt{background:rgba(245,200,66,.03);border:1px solid rgba(245,200,66,.12);border-radius:14px;padding:16px 20px;margin-bottom:24px;}
+.toggle-opt-hdr{display:flex;align-items:center;justify-content:space-between;cursor:pointer;user-select:none;}
+.toggle-opt-hdr span{font-size:.87rem;font-weight:500;color:#d4c96a;display:flex;align-items:center;gap:8px;}
+.toggle-icon{font-size:1rem;color:var(--gold);}
+.toggle-body{display:none;margin-top:14px;}
+.toggle-body.open{display:block;animation:fadeIn .3s ease;}
+/* BOXES */
+.warn-box{background:rgba(255,80,80,.06);border:1px solid rgba(255,80,80,.2);border-radius:10px;padding:10px 14px;font-size:.78rem;color:#ffaaaa;margin-top:10px;line-height:1.6;}
+.info-box{background:rgba(0,229,255,.05);border:1px solid rgba(0,229,255,.2);border-radius:10px;padding:11px 14px;font-size:.78rem;color:#a8d8e8;margin-top:10px;line-height:1.8;}
+.survey-link-title{font-size:.88rem;font-weight:600;color:#e8d882;margin-bottom:8px;}
+/* SUBMIT */
+.submit-btn{width:100%;background:linear-gradient(135deg,var(--accent) 0%,#007aff 100%);border:none;border-radius:14px;padding:17px 24px;color:var(--deep);font-family:'Segoe UI',Arial,sans-serif;font-size:1rem;font-weight:700;cursor:pointer;letter-spacing:.5px;transition:all .3s;position:relative;overflow:hidden;}
+.submit-btn::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.15),transparent);opacity:0;transition:opacity .3s;}
+.submit-btn:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(0,229,255,.3);}
+.submit-btn:hover::before{opacity:1;}
+.submit-btn:disabled{opacity:.5;cursor:not-allowed;transform:none;}
+.spinner{width:18px;height:18px;border:2px solid rgba(0,0,0,.3);border-top-color:var(--deep);border-radius:50%;animation:spin .7s linear infinite;display:inline-block;vertical-align:middle;margin-right:8px;}
+@keyframes spin{to{transform:rotate(360deg);}}
+/* SUCCESS */
+#success{display:none;text-align:center;padding:48px 32px;}
+.success-icon{width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,rgba(0,229,255,.2),rgba(0,229,255,.05));border:2px solid var(--accent);display:flex;align-items:center;justify-content:center;font-size:2rem;margin:0 auto 24px;animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(0,229,255,.4);}50%{box-shadow:0 0 0 16px rgba(0,229,255,0);}}
+#success h2{font-family:'Segoe UI',Arial,sans-serif;font-size:1.8rem;color:#fff;margin-bottom:12px;}
+#success p{color:var(--soft);font-size:.95rem;line-height:1.7;}
+#summary-box{background:rgba(0,229,255,.04);border:1px solid var(--border);border-radius:14px;padding:20px 24px;margin:24px 0;text-align:left;}
+#summary-box .s-row{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid rgba(168,180,216,.08);font-size:.85rem;}
+#summary-box .s-row:last-child{border-bottom:none;}
+#summary-box .s-row span:first-child{color:var(--soft);flex-shrink:0;margin-right:12px;}
+#summary-box .s-row span:last-child{color:#fff;font-weight:500;text-align:right;max-width:65%;word-break:break-all;}
+/* MISC */
+.hint{font-size:.77rem;color:rgba(168,180,216,.5);margin-top:6px;padding-left:2px;line-height:1.5;}
+.divider{height:1px;background:var(--border);margin:28px 0;}
+.pick-prompt{text-align:center;padding:32px 20px;color:rgba(168,180,216,.4);font-size:.9rem;border:1.5px dashed rgba(168,180,216,.1);border-radius:14px;}
+.pick-prompt span{font-size:1.6rem;display:block;margin-bottom:10px;}
+/* FAQ */
+.faq-list{display:flex;flex-direction:column;gap:10px;}
+.faq-item{background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:14px;overflow:hidden;transition:border-color .3s;}
+.faq-item.open{border-color:rgba(0,229,255,.3);}
+.faq-q{padding:18px 22px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;user-select:none;}
+.faq-q span:first-child{font-size:.9rem;font-weight:500;color:#e0e8f8;}
+.faq-icon{color:var(--accent);font-size:1.1rem;transition:transform .3s;flex-shrink:0;margin-left:12px;}
+.faq-item.open .faq-icon{transform:rotate(45deg);}
+.faq-a{display:none;padding:0 22px 18px;font-size:.85rem;color:var(--soft);line-height:1.75;border-top:1px solid var(--border);}
+.faq-item.open .faq-a{display:block;animation:fadeIn .3s ease;}
+/* FLOAT */
+.float-contact{position:fixed;bottom:28px;right:28px;z-index:200;display:flex;flex-direction:column;align-items:flex-end;gap:10px;}
+.float-btn{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;border:none;box-shadow:0 6px 24px rgba(0,0,0,.4);transition:all .3s;text-decoration:none;}
+.float-btn:hover{transform:translateY(-3px) scale(1.08);}
+.float-zalo{background:#0068ff;}
+.float-fb{background:#1877f2;}
+.float-label{background:rgba(6,11,34,.95);border:1px solid var(--border);color:#fff;font-size:.75rem;padding:5px 12px;border-radius:20px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .2s;margin-right:4px;}
+.float-row{display:flex;align-items:center;gap:8px;}
+.float-row:hover .float-label{opacity:1;}
+/* FOOTER */
+footer{position:relative;z-index:2;border-top:1px solid var(--border);padding:40px 20px;}
+.footer-inner{max-width:960px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;}
+.footer-logo{font-family:'Segoe UI',Arial,sans-serif;font-weight:800;font-size:1.3rem;color:#fff;margin-bottom:10px;}
+.footer-logo span{color:var(--accent);}
+.footer-desc{font-size:.82rem;color:var(--soft);line-height:1.7;max-width:300px;}
+.footer-col h4{font-family:'Segoe UI',Arial,sans-serif;font-size:.85rem;font-weight:700;color:#fff;margin-bottom:14px;letter-spacing:.5px;}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:8px;}
+.footer-col ul li{font-size:.82rem;color:var(--soft);}
+.footer-col ul li a{color:var(--soft);text-decoration:none;transition:color .2s;}
+.footer-col ul li a:hover{color:var(--accent);}
+.footer-bottom{max-width:960px;margin:28px auto 0;padding-top:20px;border-top:1px solid rgba(168,180,216,.08);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;}
+.footer-bottom p{font-size:.78rem;color:rgba(168,180,216,.4);}
+.footer-bottom strong{color:var(--accent);}
+@media(max-width:700px){
+  .pricing-grid,.testi-grid,.why-grid{grid-template-columns:1fr;}
+  .footer-inner{grid-template-columns:1fr;gap:28px;}
+  .pkg-grid{grid-template-columns:1fr;}
+  header{padding:16px 20px;}
+  .form-card{padding:28px 20px;}
+  .var-row,.deadline-grid{grid-template-columns:1fr;}
+  .stats-bar .stat-item{border-right:none;border-bottom:1px solid var(--border);}
+  .stats-bar .stat-item:last-child{border-bottom:none;}
+  .header-cta{display:none;}
+}
+</style>
+</head>
+<body>
+<div class="orb orb-1"></div><div class="orb orb-2"></div><div class="orb orb-3"></div>
+
+<!-- HEADER -->
+<header>
+  <div class="logo">SPSS<span>Pro</span></div>
+  <div class="header-right">
+    <div class="badge">✦ Uy tín – Chuẩn xác</div>
+    <button class="header-cta" onclick="document.getElementById('order').scrollIntoView({behavior:'smooth'})">Đặt dịch vụ →</button>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-tag"><span class="blink"></span>Dịch vụ số liệu SPSS chuyên nghiệp</div>
+  <h1>Phân Tích SPSS<br>Chuẩn – Nhanh – Uy Tín</h1>
+  <p>Chạy thuê số liệu SPSS chuẩn xác, tự động điền phiếu khảo sát — tiết kiệm thời gian, đảm bảo chất lượng nghiên cứu của bạn.</p>
+  <div class="hero-btns">
+    <button class="btn-main" onclick="document.getElementById('order').scrollIntoView({behavior:'smooth'})">✦ Đặt dịch vụ ngay</button>
+    <button class="btn-ghost" onclick="document.getElementById('faq-section').scrollIntoView({behavior:'smooth'})">Xem câu hỏi thường gặp</button>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stat-item"><div class="stat-num">300+</div><div class="stat-label">Đơn đã hoàn thành</div></div>
+  <div class="stat-item"><div class="stat-num">99%</div><div class="stat-label">Khách hàng hài lòng</div></div>
+  <div class="stat-item"><div class="stat-num">2-3 ngày</div><div class="stat-label">Thời gian xử lý</div></div>
+  <div class="stat-item"><div class="stat-num">100%</div><div class="stat-label">Khắc phục miễn phí</div></div>
+</div>
+
+<!-- CHIPS -->
+<div class="services">
+  <div class="chip"><span class="dot"></span>Cronbach's Alpha</div>
+  <div class="chip"><span class="dot purple"></span>Phân tích EFA</div>
+  <div class="chip"><span class="dot gold"></span>Hồi Quy Tuyến Tính</div>
+  <div class="chip"><span class="dot"></span>Điền phiếu tự động</div>
+</div>
+
+<!-- PRICING -->
+<div class="section-wrap" id="pricing">
+  <div class="sec-title">Bảng Giá Dịch Vụ</div>
+  <div class="sec-sub">Minh bạch – Rõ ràng – Không phát sinh thêm chi phí</div>
+  <div class="pricing-grid">
+    <div class="price-card featured">
+      <div class="best-tag">✦ Phổ biến nhất</div>
+      <span class="price-icon">📊</span>
+      <div class="price-name">Chạy Full Bộ SPSS</div>
+      <div class="price-desc">Trọn gói phân tích: Cronbach's Alpha + EFA + Hồi Quy Tuyến Tính. Chúng tôi chạy và gửi kết quả cho bạn.</div>
+      <div class="price-amount">250.000đ</div><div class="price-unit">/ trọn bộ</div>
+      <div class="price-divider"></div>
+      <ul class="price-features">
+        <li><span class="check">✔</span>Cronbach's Alpha kiểm định độ tin cậy</li>
+        <li><span class="check">✔</span>Phân tích nhân tố EFA</li>
+        <li><span class="check">✔</span>Hồi quy tuyến tính đa biến</li>
+        <li><span class="check">✔</span>File kết quả xuất SPSS chuẩn</li>
+        <li><span class="check">✔</span>Khắc phục miễn phí nếu không đạt</li>
+      </ul>
+      <button class="price-card-btn" onclick="selectAndScroll('full')">Chọn gói này →</button>
+    </div>
+    <div class="price-card">
+      <span class="price-icon">📁</span>
+      <div class="price-name">Bộ Số Liệu Chuẩn Tự Chạy</div>
+      <div class="price-desc">Nhận bộ số liệu đã chuẩn hóa sẵn — khách hàng tự đưa vào SPSS chạy theo ý muốn.</div>
+      <div class="price-amount">180.000đ</div><div class="price-unit">/ 1 bộ số liệu Excel</div>
+      <div class="price-divider"></div>
+      <ul class="price-features">
+        <li><span class="check">✔</span>Số liệu làm sạch & chuẩn hóa sẵn</li>
+        <li><span class="check">✔</span>Đúng cấu trúc để chạy SPSS trực tiếp</li>
+        <li><span class="check">✔</span>Phù hợp Cronbach's Alpha, EFA, Hồi Quy</li>
+        <li><span class="check">✔</span>Tự chủ phân tích theo ý muốn</li>
+        <li><span class="check">✔</span>Tiết kiệm chi phí hơn gói Full</li>
+      </ul>
+      <button class="price-card-btn" style="border-color:#a87fd6;color:#c49ef5;" onclick="selectAndScroll('lite')">Chọn gói này →</button>
+    </div>
+    <div class="price-card survey">
+      <span class="price-icon">🤖</span>
+      <div class="price-name">Tool Điền Phiếu Tự Động</div>
+      <div class="price-desc">Tự động điền phiếu khảo sát ngẫu nhiên, tự nhiên theo số lượng yêu cầu của bạn.</div>
+      <div class="price-amount">50.000đ</div><div class="price-unit">/ link khảo sát</div>
+      <div class="price-divider"></div>
+      <ul class="price-features">
+        <li><span class="check">✔</span>Điền tự động theo link Google Forms</li>
+        <li><span class="check">✔</span>Số lượng phiếu theo yêu cầu</li>
+        <li><span class="check">✔</span>Ngẫu nhiên, tự nhiên, không trùng lặp</li>
+        <li><span class="check">✔</span>Thực hiện nhanh trong 24h</li>
+      </ul>
+      <button class="price-card-btn" onclick="selectAndScroll('tools')">Chọn gói này →</button>
+    </div>
+  </div>
+</div>
+
+<!-- COMPARISON -->
+<div class="section-wrap">
+  <div class="sec-title">So Sánh Chi Tiết Các Gói</div>
+  <div class="sec-sub">Chọn đúng gói — tiết kiệm chi phí tối đa</div>
+  <div class="compare-wrap">
+    <table class="compare-table">
+      <thead><tr>
+        <th>Tính năng</th>
+        <th>Full Bộ SPSS<br><span style="color:var(--accent);font-size:.8rem;">250.000đ</span></th>
+        <th class="hi">Số Liệu Chuẩn<br><span style="color:#c49ef5;font-size:.8rem;">180.000đ</span></th>
+        <th>Tool Tự Động<br><span style="color:var(--gold);font-size:.8rem;">50.000đ</span></th>
+      </tr></thead>
+      <tbody>
+        <tr><td>Cronbach's Alpha</td><td><span class="ck">✔</span></td><td class="hi"><span class="ck">✔</span></td><td><span class="xx">—</span></td></tr>
+        <tr><td>Phân tích EFA</td><td><span class="ck">✔</span></td><td class="hi"><span class="ck">✔</span></td><td><span class="xx">—</span></td></tr>
+        <tr><td>Hồi Quy Tuyến Tính</td><td><span class="ck">✔</span></td><td class="hi"><span class="ck">✔</span></td><td><span class="xx">—</span></td></tr>
+        <tr><td>Chạy SPSS giúp bạn</td><td><span class="ck">✔</span></td><td class="hi"><span class="xx">Tự chạy</span></td><td><span class="xx">—</span></td></tr>
+        <tr><td>File số liệu Excel chuẩn</td><td><span class="ck">✔</span></td><td class="hi"><span class="ck">✔</span></td><td><span class="xx">—</span></td></tr>
+        <tr><td>Giải thích kết quả</td><td><span class="ck">✔</span></td><td class="hi"><span class="xx">—</span></td><td><span class="xx">—</span></td></tr>
+        <tr><td>Điền phiếu khảo sát</td><td><span style="color:var(--gold);font-size:.8rem;">+50k tuỳ chọn</span></td><td class="hi"><span style="color:var(--gold);font-size:.8rem;">+50k tuỳ chọn</span></td><td><span class="ck-gold">✔</span></td></tr>
+        <tr><td>Thời gian xử lý</td><td>2–3 ngày</td><td class="hi">2–3 ngày</td><td>Trong ngày</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- WHY US -->
+<div class="section-wrap">
+  <div class="sec-title">Tại Sao Chọn SPSSPro?</div>
+  <div class="sec-sub">Cam kết chất lượng — không lo rủi ro</div>
+  <div class="why-grid">
+    <div class="why-card"><div class="why-icon">🎯</div><div><div class="why-title">Kết quả chuẩn xác 100%</div><div class="why-text">Số liệu kiểm định kỹ lưỡng theo đúng quy trình SPSS chuẩn học thuật. Cam kết đạt yêu cầu hoặc khắc phục miễn phí.</div></div></div>
+    <div class="why-card"><div class="why-icon">⚡</div><div><div class="why-title">Xử lý trong 2–3 ngày làm việc</div><div class="why-text">Đa phần đơn hoàn thành trong 2–3 ngày làm việc. Gói gấp xử lý trong ngày — không để bạn chờ lâu.</div></div></div>
+    <div class="why-card"><div class="why-icon">💰</div><div><div class="why-title">Khắc phục miễn phí nếu không đạt</div><div class="why-text">Nếu kết quả không đúng yêu cầu, chúng tôi cam kết làm lại và gửi 1 bản mới hoàn toàn miễn phí — không điều kiện.</div></div></div>
+    <div class="why-card"><div class="why-icon">🔒</div><div><div class="why-title">Bảo mật thông tin tuyệt đối</div><div class="why-text">Dữ liệu nghiên cứu của bạn được bảo mật hoàn toàn. Không lưu trữ hay chia sẻ cho bên thứ ba.</div></div></div>
+    <div class="why-card"><div class="why-icon">🧑‍🏫</div><div><div class="why-title">Hỗ trợ giải thích kết quả</div><div class="why-text">Không chỉ giao file — hỗ trợ giải thích ý nghĩa các chỉ số để bạn tự tin trình bày trước hội đồng. <strong style="color:var(--accent);">Áp dụng với gói Full Bộ 250.000đ.</strong></div></div></div>
+    <div class="why-card"><div class="why-icon">📞</div><div><div class="why-title">Hỗ trợ tận tâm qua Zalo/FB</div><div class="why-text">Liên hệ trực tiếp qua Zalo hoặc Messenger. Phản hồi nhanh, tư vấn nhiệt tình từ A đến Z.</div></div></div>
+  </div>
+</div>
+
+<!-- TESTIMONIALS -->
+<div class="section-wrap">
+  <div class="sec-title">Khách Hàng Nói Gì?</div>
+  <div class="sec-sub">Hơn 300 bạn sinh viên tại Hà Nội đã tin tưởng dịch vụ</div>
+  <div class="testi-grid">
+    <div class="testi-card">
+      <div class="testi-quote">"</div>
+      <div class="testi-stars">★★★★★</div>
+      <div class="testi-text">Mình cần số liệu gấp cho luận văn tốt nghiệp, nhắn tin buổi tối hôm trước, 2 ngày sau đã có file hoàn chỉnh. Kết quả chuẩn, đúng với mô hình nghiên cứu. Cảm ơn bên mình nhiều!</div>
+      <div class="testi-author"><div class="testi-avatar">TH</div><div><div class="testi-name">Trần Hương</div><div class="testi-role">Sinh viên ĐH Thương mại Hà Nội</div></div></div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-quote">"</div>
+      <div class="testi-stars">★★★★★</div>
+      <div class="testi-text">Dùng tool điền phiếu tự động, 150 mẫu chỉ trong vài giờ. Dữ liệu tự nhiên, không bị Google phát hiện. Tiết kiệm cả tuần đi xin phiếu. Sẽ dùng lại lần sau!</div>
+      <div class="testi-author"><div class="testi-avatar">MK</div><div><div class="testi-name">Minh Khoa</div><div class="testi-role">Sinh viên ĐH Kinh tế Quốc dân Hà Nội</div></div></div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-quote">"</div>
+      <div class="testi-stars">★★★★★</div>
+      <div class="testi-text">Mua bộ số liệu chuẩn để tự chạy SPSS, file Excel rất sạch và đúng format. Cronbach Alpha và EFA đều đạt ngay lần đầu. Đã giới thiệu thêm nhiều bạn trong lớp!</div>
+      <div class="testi-author"><div class="testi-avatar">NA</div><div><div class="testi-name">Ngọc Anh</div><div class="testi-role">Sinh viên ĐH Ngoại thương Hà Nội</div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- COUNTDOWN -->
+<div class="countdown-bar">
+  <div class="countdown-inner">
+    <div class="cd-label"><span>🔥</span>Ưu đãi giảm 10% cho 5 đơn tiếp theo — kết thúc sau:</div>
+    <div class="cd-timer">
+      <div class="cd-block"><span class="cd-num" id="cd-h">00</span><div class="cd-unit">Giờ</div></div>
+      <div class="cd-sep">:</div>
+      <div class="cd-block"><span class="cd-num" id="cd-m">00</span><div class="cd-unit">Phút</div></div>
+      <div class="cd-sep">:</div>
+      <div class="cd-block"><span class="cd-num" id="cd-s">00</span><div class="cd-unit">Giây</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- FORM -->
+<div class="form-wrap" id="order">
+  <div class="form-card">
+    <div id="form-view">
+      <div class="form-title">Đặt Dịch Vụ Ngay</div>
+      <div class="form-sub">Chọn gói phù hợp — các trường thông tin sẽ tự động hiển thị theo gói bạn chọn.</div>
+
+      <div class="pkg-label">① Chọn gói dịch vụ</div>
+      <div class="pkg-grid">
+        <div class="pkg-option" id="pkg-full" onclick="selectPkg('full')"><div class="pkg-check">✔</div><div class="pkg-icon">📊</div><div class="pkg-name">Full Bộ SPSS</div><div class="pkg-price">250.000đ</div></div>
+        <div class="pkg-option" id="pkg-lite" onclick="selectPkg('lite')"><div class="pkg-check">✔</div><div class="pkg-icon">📁</div><div class="pkg-name">Số Liệu Chuẩn</div><div class="pkg-price">180.000đ</div></div>
+        <div class="pkg-option" id="pkg-tools" onclick="selectPkg('tools')"><div class="pkg-check">✔</div><div class="pkg-icon">🤖</div><div class="pkg-name">Tool Tự Động</div><div class="pkg-price">50.000đ</div></div>
+      </div>
+
+      <div class="pick-prompt" id="pick-prompt"><span>☝️</span>Vui lòng chọn một gói dịch vụ ở trên để tiếp tục</div>
+
+      <!-- SPSS SECTION -->
+      <div class="fields-section" id="section-spss">
+        <div class="step">
+          <div class="step-label"><div class="step-num">1</div><label>Họ và tên khách hàng</label></div>
+          <input type="text" id="fullname" placeholder="Ví dụ: Nguyễn Văn A" />
+        </div>
+        <div class="step">
+          <div class="step-label"><div class="step-num">2</div><label>Thông tin liên hệ (SĐT hoặc Email)</label></div>
+          <input type="text" id="contact-spss" placeholder="VD: 0901234567 hoặc email@gmail.com" />
+          <p class="hint">📞 Chúng tôi liên hệ qua số này để xác nhận đơn và gửi kết quả.</p>
+        </div>
+        <div class="step">
+          <div class="step-label"><div class="step-num">3</div><label>Số biến độc lập cần phân tích</label></div>
+          <input type="number" id="num-vars" placeholder="Ví dụ: 4" min="1" max="20" oninput="buildVarFields()" />
+          <p class="hint">Nhập số từ 1–20, các ô bên dưới sẽ tự động xuất hiện.</p>
+        </div>
+        <div class="step">
+          <div class="step-label"><div class="step-num">4–5</div><label>Tên biến độc lập & số câu hỏi mỗi biến</label></div>
+          <div class="var-container" id="var-container"></div>
+        </div>
+        <div class="step">
+          <div class="step-label"><div class="step-num">6</div><label>Biến phụ thuộc</label></div>
+          <div class="var-row" style="animation:none;">
+            <div class="var-row-header" style="color:#c49ef5;">Biến phụ thuộc</div>
+            <div class="field-group"><label>Tên biến phụ thuộc</label><input type="text" id="dep-name" placeholder="VD: Quyết định mua hàng" /></div>
+            <div class="field-group"><label>Số câu hỏi</label><input type="number" id="dep-q" placeholder="VD: 3" min="1" max="50" /></div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-label"><div class="step-num">7</div><label>Số lượng mẫu SPSS</label></div>
+          <input type="number" id="num-samples" placeholder="VD: 150" min="1" />
+          <div class="info-box">💡 <strong>Gợi ý số mẫu phù hợp</strong> — Nên chọn từ <strong>110 đến 250 mẫu</strong>:<br>&nbsp;&nbsp;• 5 biến độc lập → khoảng <strong>120 mẫu</strong><br>&nbsp;&nbsp;• 7 biến độc lập → <strong>160 mẫu trở lên</strong><br>&nbsp;&nbsp;Biến càng nhiều → số mẫu nên càng lớn.</div>
+        </div>
+        <div class="step">
+          <div class="step-label"><div class="step-num">8</div><label>Thời gian hoàn thành mong muốn</label></div>
+          <div class="deadline-grid">
+            <div class="dl-opt" id="dl-normal" onclick="selectDeadline('normal','')"><div class="dl-name">⏱ Thường (1–2 ngày)</div><div class="dl-note">Giá gốc, không phụ phí</div></div>
+            <div class="dl-opt urgent" id="dl-urgent" onclick="selectDeadline('urgent','')"><div class="dl-name">⚡ Gấp (trong ngày)</div><div class="dl-note">Liên hệ báo giá phụ phí</div></div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-label"><div class="step-num">9</div><label>Ghi chú / Yêu cầu thêm <span style="color:var(--soft);font-weight:400;">(tùy chọn)</span></label></div>
+          <textarea id="notes-spss" placeholder="VD: Tên trường, ngành học, format đặc biệt của GVHD, yêu cầu riêng..."></textarea>
+        </div>
+        <div class="divider"></div>
+        <div class="toggle-opt">
+          <div class="toggle-opt-hdr" onclick="toggleTools()">
+            <span>🤖 Thêm dịch vụ điền phiếu tự động (+50.000đ)</span>
+            <span class="toggle-icon" id="tools-icon">＋</span>
+          </div>
+          <div class="toggle-body" id="tools-body">
+            <div class="survey-link-title">🔗 Link chỉnh sửa phiếu khảo sát</div>
+            <input type="url" id="survey-link-spss" placeholder="https://docs.google.com/forms/d/.../edit" />
+            <div class="warn-box">⚠️ <strong>Lưu ý:</strong> Gửi <strong>link chỉnh sửa</strong> (đuôi <code>/edit</code>), không phải link điền. Hãy <strong>mở quyền "Bất kỳ ai có đường link"</strong> trước khi gửi.</div>
+            <div style="margin-top:12px;">
+              <label style="font-size:.82rem;color:var(--soft);display:block;margin-bottom:6px;">Số lượng phiếu cần điền</label>
+              <input type="number" id="survey-num-spss" placeholder="VD: 150" min="1" />
+            </div>
+          </div>
+        </div>
+        <button class="submit-btn" id="btn-spss" onclick="handleSubmit()">✦ Gửi yêu cầu đặt dịch vụ</button>
+      </div>
+
+      <!-- TOOLS SECTION -->
+      <div class="fields-section" id="section-tools">
+        <div class="step">
+          <div class="step-label"><div class="step-num">1</div><label>Họ và tên khách hàng</label></div>
+          <input type="text" id="fullname-tools" placeholder="Ví dụ: Nguyễn Văn A" />
+        </div>
+        <div class="step">
+          <div class="step-label"><div class="step-num">2</div><label>Thông tin liên hệ (SĐT hoặc Email)</label></div>
+          <input type="text" id="contact-tools" placeholder="VD: 0901234567 hoặc email@gmail.com" />
+          <p class="hint">📞 Chúng tôi liên hệ qua số này để xác nhận đơn và gửi kết quả.</p>
+        </div>
+        <div class="step">
+          <div class="step-label"><div class="step-num">3</div><label>Link chỉnh sửa phiếu khảo sát</label></div>
+          <input type="url" id="survey-link-only" placeholder="https://docs.google.com/forms/d/.../edit" />
+          <div class="warn-box">⚠️ <strong>Lưu ý:</strong> Gửi <strong>link chỉnh sửa</strong> (đuôi <code>/edit</code>), không phải link điền. Hãy <strong>mở quyền "Bất kỳ ai có đường link"</strong> và giữ quyền truy cập mọi lúc để chúng tôi xử lý.</div>
+        </div>
+        <div class="step">
+          <div class="step-label"><div class="step-num">4</div><label>Số lượng phiếu cần điền</label></div>
+          <input type="number" id="num-responses" placeholder="Ví dụ: 150" min="1" />
+          <p class="hint">Mỗi link tính 50.000đ, không giới hạn số lượng phiếu.</p>
+        </div>
+        <div class="step">
+          <div class="step-label"><div class="step-num">5</div><label>Thời gian hoàn thành mong muốn</label></div>
+          <div class="deadline-grid">
+            <div class="dl-opt" id="dl-normal-t" onclick="selectDeadline('normal','t')"><div class="dl-name">⏱ Thường (trong ngày)</div><div class="dl-note">Giá gốc, không phụ phí</div></div>
+            <div class="dl-opt urgent" id="dl-urgent-t" onclick="selectDeadline('urgent','t')"><div class="dl-name">⚡ Gấp (2–3 giờ)</div><div class="dl-note">Liên hệ báo giá phụ phí</div></div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-label"><div class="step-num">6</div><label>Ghi chú / Yêu cầu thêm <span style="color:var(--soft);font-weight:400;">(tùy chọn)</span></label></div>
+          <textarea id="notes-tools" placeholder="VD: Điền theo khung giờ cụ thể, tránh điền hàng loạt trong 1 phút..."></textarea>
+        </div>
+        <button class="submit-btn" id="btn-tools" onclick="handleSubmit()">✦ Gửi yêu cầu điền phiếu</button>
+      </div>
+    </div>
+
+    <!-- SUCCESS -->
+    <div id="success">
+      <div class="success-icon">✓</div>
+      <h2>Đã nhận yêu cầu!</h2>
+      <p>Cảm ơn bạn đã tin tưởng <strong>SPSSPro</strong>.<br>Chúng tôi sẽ liên hệ xác nhận qua SĐT/Email trong thời gian sớm nhất.</p>
+      <div id="summary-box"></div>
+      <button class="submit-btn" style="margin-top:8px;" onclick="resetForm()">← Đặt thêm dịch vụ</button>
+    </div>
+  </div>
+</div>
+
+<!-- FAQ -->
+<div class="section-wrap" id="faq-section">
+  <div class="sec-title">Câu Hỏi Thường Gặp</div>
+  <div class="sec-sub">Giải đáp nhanh mọi thắc mắc trước khi đặt hàng</div>
+  <div class="faq-list">
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span>Cronbach's Alpha bao nhiêu là đạt chuẩn?</span><span class="faq-icon">＋</span></div><div class="faq-a">Hệ số Cronbach's Alpha ≥ 0.6 là chấp nhận được, ≥ 0.7 là tốt, ≥ 0.8 là rất tốt. Ngoài ra hệ số tương quan biến tổng cần ≥ 0.3. SPSSPro đảm bảo số liệu đạt đủ các tiêu chuẩn này.</div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span>EFA cần điều kiện gì để đạt?</span><span class="faq-icon">＋</span></div><div class="faq-a">EFA đạt khi: KMO ≥ 0.5 (tốt nhất ≥ 0.8), Sig. Bartlett's Test &lt; 0.05, Eigenvalue &gt; 1, Total Variance Explained ≥ 50%, Factor Loading ≥ 0.5. Chúng tôi đảm bảo số liệu đạt tất cả điều kiện này.</div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span>Hồi quy tuyến tính cần lưu ý gì?</span><span class="faq-icon">＋</span></div><div class="faq-a">Mô hình hồi quy cần kiểm định: R² điều chỉnh, F-test (Sig. &lt; 0.05), hệ số VIF &lt; 10 (không đa cộng tuyến), Sig. của từng biến &lt; 0.05. SPSSPro đảm bảo kết quả đạt và giải thích rõ từng chỉ số.</div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span>Kết quả gửi lại qua đâu?</span><span class="faq-icon">＋</span></div><div class="faq-a">Chúng tôi gửi file qua Zalo hoặc Email tùy thông tin liên hệ bạn để lại trong form. File gồm: số liệu Excel chuẩn và file kết quả SPSS (gói Full Bộ).</div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span>Tool điền phiếu có bị Google phát hiện không?</span><span class="faq-icon">＋</span></div><div class="faq-a">Tool điền ngẫu nhiên, mô phỏng hành vi người dùng thật: thời gian điền tự nhiên, IP đa dạng, không hàng loạt. Tỷ lệ bị chặn rất thấp và đã được kiểm chứng qua hàng trăm đơn.</div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span>Nếu kết quả không đạt, tôi được gì?</span><span class="faq-icon">＋</span></div><div class="faq-a">Cam kết 100%: nếu kết quả không đạt các tiêu chuẩn đã cam kết, chúng tôi sẽ khắc phục và gửi lại 1 bản mới hoàn toàn miễn phí — không điều kiện, không cần giải thích thêm.</div></div>
+    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)"><span>Tôi cần chuẩn bị gì để đặt hàng?</span><span class="faq-icon">＋</span></div><div class="faq-a">Chỉ cần điền đầy đủ form đặt dịch vụ: họ tên, liên hệ, số biến, tên biến và số câu hỏi, số mẫu. Nếu đã có phiếu khảo sát thì gửi thêm link chỉnh sửa. Không cần chuẩn bị thêm!</div></div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo">SPSS<span>Pro</span></div>
+      <div class="footer-desc">Dịch vụ phân tích số liệu SPSS chuyên nghiệp và tool điền phiếu khảo sát tự động. Nhanh – Chuẩn – Uy tín.</div>
+    </div>
+    <div class="footer-col">
+      <h4>Dịch vụ</h4>
+      <ul><li>Chạy Full Bộ SPSS</li><li>Bộ Số Liệu Chuẩn</li><li>Tool Điền Phiếu</li><li>Tư vấn miễn phí</li></ul>
+    </div>
+    <div class="footer-col">
+      <h4>Hỗ trợ</h4>
+      <ul>
+        <li><a href="#faq-section">Câu hỏi thường gặp</a></li>
+        <li><a href="#order">Đặt dịch vụ</a></li>
+        <li><a href="#pricing">Bảng giá</a></li>
+        <li>Zalo: <strong style="color:var(--accent);">0389518887</strong></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 <strong>SPSSPro</strong> — Dịch vụ phân tích số liệu & khảo sát chuyên nghiệp</p>
+    <p>Cam kết bảo mật thông tin khách hàng</p>
+  </div>
+</footer>
+
+<!-- FLOATING CONTACT -->
+<div class="float-contact">
+  <div class="float-row">
+    <span class="float-label">Chat Zalo</span>
+    <a href="https://zalo.me/0389518887" target="_blank" class="float-btn float-zalo" title="Zalo 0389518887">
+      <svg width="26" height="26" viewBox="0 0 48 48"><rect width="48" height="48" rx="12" fill="#0068ff"/><text x="50%" y="58%" dominant-baseline="middle" text-anchor="middle" fill="white" font-size="22" font-weight="bold" font-family="Arial">Z</text></svg>
+    </a>
+  </div>
+  <div class="float-row">
+    <span class="float-label">Facebook</span>
+    <a href="https://m.me/yourpage" target="_blank" class="float-btn float-fb" title="Messenger">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M12 2C6.477 2 2 6.145 2 11.243c0 2.906 1.407 5.504 3.623 7.23V22l3.366-1.844c.9.248 1.854.381 2.84.381 5.524 0 10-4.145 10-9.294C22 6.145 17.523 2 12 2zm1.004 12.522l-2.547-2.718-4.97 2.718 5.467-5.798 2.607 2.718 4.91-2.718-5.467 5.798z"/></svg>
+    </a>
+  </div>
+</div>
+
+<script>
+const SHEET_URL='https://script.google.com/macros/s/AKfycbyblYxS5M6C_Psaqp3_O7X1z1-F4H6_diHhpnoxNOjz4Tcu1HrewfhBbVPDN-LQVRSc/exec';
+let selectedPkg=null,toolsOpen=false,selDL='',selDLT='';
+
+/* Countdown */
+(function(){
+  const KEY='spss_cd_end';
+  let end=localStorage.getItem(KEY);
+  if(!end||Date.now()>parseInt(end)){end=Date.now()+12*3600*1000;localStorage.setItem(KEY,end);}
+  function tick(){
+    const d=parseInt(end)-Date.now();
+    if(d<=0){['cd-h','cd-m','cd-s'].forEach(id=>document.getElementById(id).textContent='00');return;}
+    document.getElementById('cd-h').textContent=String(Math.floor(d/3600000)).padStart(2,'0');
+    document.getElementById('cd-m').textContent=String(Math.floor((d%3600000)/60000)).padStart(2,'0');
+    document.getElementById('cd-s').textContent=String(Math.floor((d%60000)/1000)).padStart(2,'0');
+  }
+  tick();setInterval(tick,1000);
+})();
+
+function selectAndScroll(pkg){selectPkg(pkg);document.getElementById('order').scrollIntoView({behavior:'smooth'});}
+
+function selectPkg(pkg){
+  selectedPkg=pkg;
+  ['full','lite','tools'].forEach(p=>document.getElementById('pkg-'+p).className='pkg-option');
+  document.getElementById('pick-prompt').style.display='none';
+  document.getElementById('section-spss').classList.remove('visible');
+  document.getElementById('section-tools').classList.remove('visible');
+  if(pkg==='full'){document.getElementById('pkg-full').classList.add('active-full');document.getElementById('section-spss').classList.add('visible');}
+  else if(pkg==='lite'){document.getElementById('pkg-lite').classList.add('active-lite');document.getElementById('section-spss').classList.add('visible');}
+  else{document.getElementById('pkg-tools').classList.add('active-tools');document.getElementById('section-tools').classList.add('visible');}
+}
+
+function buildVarFields(){
+  const n=parseInt(document.getElementById('num-vars').value)||0;
+  const c=document.getElementById('var-container');c.innerHTML='';
+  if(n<1||n>20)return;
+  for(let i=1;i<=n;i++){
+    const r=document.createElement('div');r.className='var-row';
+    r.innerHTML=`<div class="var-row-header">Biến ${i}</div>
+    <div class="field-group"><label>Tên biến độc lập</label><input type="text" id="var-name-${i}" placeholder="VD: Chất lượng dịch vụ"/></div>
+    <div class="field-group"><label>Số câu hỏi</label><input type="number" id="var-q-${i}" placeholder="VD: 5" min="1" max="50"/></div>`;
+    c.appendChild(r);
+  }
+}
+
+function selectDeadline(val,suffix){
+  if(!suffix){
+    selDL=val;
+    document.getElementById('dl-normal').classList.toggle('active',val==='normal');
+    document.getElementById('dl-urgent').classList.toggle('active',val==='urgent');
+  }else{
+    selDLT=val;
+    document.getElementById('dl-normal-t').classList.toggle('active',val==='normal');
+    document.getElementById('dl-urgent-t').classList.toggle('active',val==='urgent');
+  }
+}
+
+function toggleTools(){
+  toolsOpen=!toolsOpen;
+  document.getElementById('tools-body').classList.toggle('open',toolsOpen);
+  document.getElementById('tools-icon').textContent=toolsOpen?'－':'＋';
+}
+
+function toggleFaq(el){el.parentElement.classList.toggle('open');}
+
+async function handleSubmit(){
+  if(!selectedPkg){alert('Vui lòng chọn gói dịch vụ.');return;}
+  let payload={goi:'',timestamp:new Date().toLocaleString('vi-VN')};
+  let html='';
+
+  if(selectedPkg==='full'||selectedPkg==='lite'){
+    const name=document.getElementById('fullname').value.trim();
+    const contact=document.getElementById('contact-spss').value.trim();
+    const numVars=parseInt(document.getElementById('num-vars').value)||0;
+    const depName=document.getElementById('dep-name').value.trim();
+    const depQ=document.getElementById('dep-q').value.trim();
+    const numSamples=document.getElementById('num-samples').value.trim();
+    const notes=document.getElementById('notes-spss').value.trim();
+    const surveyLink=toolsOpen?document.getElementById('survey-link-spss').value.trim():'';
+    const surveyNum=toolsOpen?document.getElementById('survey-num-spss').value.trim():'';
+    if(!name){alert('Vui lòng nhập họ và tên.');return;}
+    if(!contact){alert('Vui lòng nhập SĐT hoặc Email.');return;}
+    if(numVars<1){alert('Vui lòng nhập số biến độc lập.');return;}
+    if(!depName){alert('Vui lòng nhập tên biến phụ thuộc.');return;}
+    if(!depQ){alert('Vui lòng nhập số câu hỏi biến phụ thuộc.');return;}
+    if(!numSamples){alert('Vui lòng nhập số lượng mẫu.');return;}
+    if(!selDL){alert('Vui lòng chọn thời gian hoàn thành.');return;}
+    const vars=[];
+    for(let i=1;i<=numVars;i++){
+      const vN=(document.getElementById(`var-name-${i}`)?.value||'').trim();
+      const vQ=(document.getElementById(`var-q-${i}`)?.value||'').trim();
+      if(!vN||!vQ){alert(`Vui lòng điền đầy đủ thông tin Biến ${i}.`);return;}
+      vars.push({name:vN,questions:vQ});
+    }
+    payload.goi=selectedPkg==='full'?'Full Bộ SPSS – 250.000đ':'Số Liệu Chuẩn – 180.000đ';
+    payload.hoten=name;payload.lienhe=contact;payload.soBien=numVars;
+    payload.chiTietBien=vars.map((v,i)=>`Biến ${i+1}: ${v.name} (${v.questions} câu)`).join(' | ');
+    payload.bienPhuThuoc=`${depName} (${depQ} câu)`;payload.soMau=numSamples;
+    payload.thoiGian=selDL==='normal'?'Thường (1–2 ngày)':'Gấp (trong ngày)';
+    payload.ghiChu=notes||'(Không có)';payload.linkKhaoSat=surveyLink||'(Không có)';payload.soPHieu=surveyNum||'';
+    html+=R('Gói dịch vụ',payload.goi)+R('Khách hàng',name)+R('Liên hệ',contact)+R('Số biến độc lập',numVars+' biến');
+    vars.forEach((v,i)=>{html+=R(`↳ Biến ${i+1}: ${v.name}`,v.questions+' câu');});
+    html+=R('Biến phụ thuộc: '+depName,depQ+' câu')+R('Số mẫu',numSamples+' mẫu')+R('Thời gian',payload.thoiGian);
+    if(notes)html+=R('Ghi chú',notes);
+    if(surveyLink)html+=R('Link phiếu (+tool)',surveyLink);
+    if(surveyNum)html+=R('Số phiếu cần điền',surveyNum+' phiếu');
+  }else{
+    const name=document.getElementById('fullname-tools').value.trim();
+    const contact=document.getElementById('contact-tools').value.trim();
+    const link=document.getElementById('survey-link-only').value.trim();
+    const numResp=document.getElementById('num-responses').value.trim();
+    const notes=document.getElementById('notes-tools').value.trim();
+    if(!name){alert('Vui lòng nhập họ và tên.');return;}
+    if(!contact){alert('Vui lòng nhập SĐT hoặc Email.');return;}
+    if(!link){alert('Vui lòng nhập link chỉnh sửa phiếu.');return;}
+    if(!numResp){alert('Vui lòng nhập số lượng phiếu.');return;}
+    if(!selDLT){alert('Vui lòng chọn thời gian hoàn thành.');return;}
+    payload.goi='Tool Điền Phiếu Tự Động – 50.000đ';payload.hoten=name;payload.lienhe=contact;
+    payload.linkKhaoSat=link;payload.soPHieu=numResp;
+    payload.thoiGian=selDLT==='normal'?'Thường (trong ngày)':'Gấp (2–3 giờ)';payload.ghiChu=notes||'(Không có)';
+    html+=R('Gói dịch vụ',payload.goi)+R('Khách hàng',name)+R('Liên hệ',contact)+R('Link chỉnh sửa phiếu',link)+R('Số phiếu cần điền',numResp+' phiếu')+R('Thời gian',payload.thoiGian);
+    if(notes)html+=R('Ghi chú',notes);
+  }
+
+  const btnId=selectedPkg==='tools'?'btn-tools':'btn-spss';
+  const btn=document.getElementById(btnId);
+  btn.disabled=true;btn.innerHTML='<span class="spinner"></span> Đang gửi...';
+  try{await fetch(SHEET_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});}catch(e){}
+  document.getElementById('summary-box').innerHTML=html;
+  document.getElementById('form-view').style.display='none';
+  document.getElementById('success').style.display='block';
+  btn.disabled=false;btn.innerHTML=selectedPkg==='tools'?'✦ Gửi yêu cầu điền phiếu':'✦ Gửi yêu cầu đặt dịch vụ';
+}
+
+function R(l,v){return`<div class="s-row"><span>${l}</span><span>${v}</span></div>`;}
+
+function resetForm(){
+  selectedPkg=null;toolsOpen=false;selDL='';selDLT='';
+  document.getElementById('form-view').style.display='block';
+  document.getElementById('success').style.display='none';
+  document.getElementById('pick-prompt').style.display='';
+  document.getElementById('section-spss').classList.remove('visible');
+  document.getElementById('section-tools').classList.remove('visible');
+  ['full','lite','tools'].forEach(p=>document.getElementById('pkg-'+p).className='pkg-option');
+  ['fullname','contact-spss','num-vars','dep-name','dep-q','num-samples','notes-spss','survey-link-spss','survey-num-spss','fullname-tools','contact-tools','survey-link-only','num-responses','notes-tools'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+  document.getElementById('var-container').innerHTML='';
+  document.getElementById('tools-body').classList.remove('open');
+  document.getElementById('tools-icon').textContent='＋';
+  ['dl-normal','dl-urgent','dl-normal-t','dl-urgent-t'].forEach(id=>{const el=document.getElementById(id);if(el)el.classList.remove('active');});
+}
+</script>
+</body>
+</html>
