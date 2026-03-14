@@ -319,7 +319,7 @@ footer{position:relative;z-index:2;border-top:1px solid var(--border);padding:40
         <li><span class="check">✔</span>Số liệu làm sạch & chuẩn hóa sẵn</li>
         <li><span class="check">✔</span>Đúng cấu trúc để chạy SPSS trực tiếp</li>
         <li><span class="check">✔</span>Phù hợp Cronbach's Alpha, EFA, Hồi Quy</li>
-        <li><span class="check">✔</span>Tự chủ phân tích theo ý muốn</li>
+        <li><span class="check">✔</span>Tự chủ phân tích</li>
         <li><span class="check">✔</span>Tiết kiệm chi phí hơn gói Full</li>
       </ul>
       <button class="price-card-btn" style="border-color:#a87fd6;color:#c49ef5;" onclick="selectAndScroll('lite')">Chọn gói này →</button>
@@ -376,8 +376,8 @@ footer{position:relative;z-index:2;border-top:1px solid var(--border);padding:40
     <div class="why-card"><div class="why-icon">⚡</div><div><div class="why-title">Xử lý trong 2–3 ngày làm việc</div><div class="why-text">Đa phần đơn hoàn thành trong 2–3 ngày làm việc. Gói gấp xử lý trong ngày — không để bạn chờ lâu.</div></div></div>
     <div class="why-card"><div class="why-icon">💰</div><div><div class="why-title">Khắc phục miễn phí nếu không đạt</div><div class="why-text">Nếu kết quả không đúng yêu cầu, chúng tôi cam kết làm lại và gửi 1 bản mới hoàn toàn miễn phí — không điều kiện.</div></div></div>
     <div class="why-card"><div class="why-icon">🔒</div><div><div class="why-title">Bảo mật thông tin tuyệt đối</div><div class="why-text">Dữ liệu nghiên cứu của bạn được bảo mật hoàn toàn. Không lưu trữ hay chia sẻ cho bên thứ ba.</div></div></div>
-    <div class="why-card"><div class="why-icon">🧑‍🏫</div><div><div class="why-title">Hỗ trợ giải thích kết quả</div><div class="why-text">Không chỉ giao file — hỗ trợ giải thích ý nghĩa các chỉ số để bạn tự tin trình bày trước hội đồng. <strong style="color:var(--accent);">Áp dụng với gói Full Bộ 250.000đ.</strong></div></div></div>
-    <div class="why-card"><div class="why-icon">📞</div><div><div class="why-title">Hỗ trợ tận tâm qua Zalo/FB</div><div class="why-text">Liên hệ trực tiếp qua Zalo hoặc Messenger. Phản hồi nhanh, tư vấn nhiệt tình từ A đến Z.</div></div></div>
+    <div class="why-card"><div class="why-icon">🧑‍🏫</div><div><div class="why-title">Cung cấp file giải thích kết quả</div><div class="why-text">Hỗ trợ giải thích ý nghĩa các chỉ số để bạn tự tin trình bày trước hội đồng. <strong style="color:var(--accent);">Áp dụng với gói Full Bộ 250.000đ.</strong></div></div></div>
+    <div class="why-card"><div class="why-icon">📞</div><div><div class="why-title">Hỗ trợ tận tâm qua Zalo/FB</div><div class="why-text">Liên hệ trực tiếp qua Zalo hoặc Messenger để nhận giải đáp thắc mắc. </div></div></div>
   </div>
 </div>
 
@@ -403,20 +403,6 @@ footer{position:relative;z-index:2;border-top:1px solid var(--border);padding:40
       <div class="testi-stars">★★★★★</div>
       <div class="testi-text">Mua bộ số liệu chuẩn để tự chạy SPSS, file Excel rất sạch và đúng format. Cronbach Alpha và EFA đều đạt ngay lần đầu. Đã giới thiệu thêm nhiều bạn trong lớp!</div>
       <div class="testi-author"><div class="testi-avatar">NA</div><div><div class="testi-name">Ngọc Anh</div><div class="testi-role">Sinh viên ĐH Ngoại thương Hà Nội</div></div></div>
-    </div>
-  </div>
-</div>
-
-<!-- COUNTDOWN -->
-<div class="countdown-bar">
-  <div class="countdown-inner">
-    <div class="cd-label"><span>🔥</span>Ưu đãi giảm 10% cho 5 đơn tiếp theo — kết thúc sau:</div>
-    <div class="cd-timer">
-      <div class="cd-block"><span class="cd-num" id="cd-h">00</span><div class="cd-unit">Giờ</div></div>
-      <div class="cd-sep">:</div>
-      <div class="cd-block"><span class="cd-num" id="cd-m">00</span><div class="cd-unit">Phút</div></div>
-      <div class="cd-sep">:</div>
-      <div class="cd-block"><span class="cd-num" id="cd-s">00</span><div class="cd-unit">Giây</div></div>
     </div>
   </div>
 </div>
@@ -473,7 +459,7 @@ footer{position:relative;z-index:2;border-top:1px solid var(--border);padding:40
         <div class="step">
           <div class="step-label"><div class="step-num">8</div><label>Thời gian hoàn thành mong muốn</label></div>
           <div class="deadline-grid">
-            <div class="dl-opt" id="dl-normal" onclick="selectDeadline('normal','')"><div class="dl-name">⏱ Thường (1–2 ngày)</div><div class="dl-note">Giá gốc, không phụ phí</div></div>
+            <div class="dl-opt" id="dl-normal" onclick="selectDeadline('normal','')"><div class="dl-name">⏱ Thường (2-3 ngày)</div><div class="dl-note">Giá gốc, không phụ phí</div></div>
             <div class="dl-opt urgent" id="dl-urgent" onclick="selectDeadline('urgent','')"><div class="dl-name">⚡ Gấp (trong ngày)</div><div class="dl-note">Liên hệ báo giá phụ phí</div></div>
           </div>
         </div>
@@ -524,8 +510,8 @@ footer{position:relative;z-index:2;border-top:1px solid var(--border);padding:40
         <div class="step">
           <div class="step-label"><div class="step-num">5</div><label>Thời gian hoàn thành mong muốn</label></div>
           <div class="deadline-grid">
-            <div class="dl-opt" id="dl-normal-t" onclick="selectDeadline('normal','t')"><div class="dl-name">⏱ Thường (trong ngày)</div><div class="dl-note">Giá gốc, không phụ phí</div></div>
-            <div class="dl-opt urgent" id="dl-urgent-t" onclick="selectDeadline('urgent','t')"><div class="dl-name">⚡ Gấp (2–3 giờ)</div><div class="dl-note">Liên hệ báo giá phụ phí</div></div>
+            <div class="dl-opt" id="dl-normal-t" onclick="selectDeadline('normal','t')"><div class="dl-name">⏱ Thường (Trong ngày)</div><div class="dl-note">Giá gốc, không phụ phí</div></div>
+            <div class="dl-opt urgent" id="dl-urgent-t" onclick="selectDeadline('urgent','t')"><div class="dl-name">⚡ Gấp (5-6 giờ)</div><div class="dl-note">Phụ Phí 50k</div></div>
           </div>
         </div>
         <div class="step">
@@ -597,13 +583,7 @@ footer{position:relative;z-index:2;border-top:1px solid var(--border);padding:40
       <svg width="26" height="26" viewBox="0 0 48 48"><rect width="48" height="48" rx="12" fill="#0068ff"/><text x="50%" y="58%" dominant-baseline="middle" text-anchor="middle" fill="white" font-size="22" font-weight="bold" font-family="Arial">Z</text></svg>
     </a>
   </div>
-  <div class="float-row">
-    <span class="float-label">Facebook</span>
-    <a href="https://m.me/yourpage" target="_blank" class="float-btn float-fb" title="Messenger">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M12 2C6.477 2 2 6.145 2 11.243c0 2.906 1.407 5.504 3.623 7.23V22l3.366-1.844c.9.248 1.854.381 2.84.381 5.524 0 10-4.145 10-9.294C22 6.145 17.523 2 12 2zm1.004 12.522l-2.547-2.718-4.97 2.718 5.467-5.798 2.607 2.718 4.91-2.718-5.467 5.798z"/></svg>
-    </a>
-  </div>
-</div>
+ 
 
 <script>
 const SHEET_URL='https://script.google.com/macros/s/AKfycbyblYxS5M6C_Psaqp3_O7X1z1-F4H6_diHhpnoxNOjz4Tcu1HrewfhBbVPDN-LQVRSc/exec';
@@ -703,7 +683,7 @@ async function handleSubmit(){
     payload.hoten=name;payload.lienhe=contact;payload.soBien=numVars;
     payload.chiTietBien=vars.map((v,i)=>`Biến ${i+1}: ${v.name} (${v.questions} câu)`).join(' | ');
     payload.bienPhuThuoc=`${depName} (${depQ} câu)`;payload.soMau=numSamples;
-    payload.thoiGian=selDL==='normal'?'Thường (1–2 ngày)':'Gấp (trong ngày)';
+    payload.thoiGian=selDL==='normal'?'Thường (2–3 ngày)':'Gấp (trong ngày Phụ Phí Thêm 50k)';
     payload.ghiChu=notes||'(Không có)';payload.linkKhaoSat=surveyLink||'(Không có)';payload.soPHieu=surveyNum||'';
     html+=R('Gói dịch vụ',payload.goi)+R('Khách hàng',name)+R('Liên hệ',contact)+R('Số biến độc lập',numVars+' biến');
     vars.forEach((v,i)=>{html+=R(`↳ Biến ${i+1}: ${v.name}`,v.questions+' câu');});
