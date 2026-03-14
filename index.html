@@ -704,7 +704,7 @@ async function handleSubmit(){
     if(!selDLT){alert('Vui lòng chọn thời gian hoàn thành.');return;}
     payload.goi='Tool Điền Phiếu Tự Động – 50.000đ';payload.hoten=name;payload.lienhe=contact;
     payload.linkKhaoSat=link;payload.soPHieu=numResp;
-    payload.thoiGian=selDLT==='normal'?'Thường (trong ngày)':'Gấp (2–3 giờ)';payload.ghiChu=notes||'(Không có)';
+    payload.thoiGian=selDLT==='normal'?'Thường (trong ngày)':'Gấp (5–6 giờ)';payload.ghiChu=notes||'(Không có)';
     html+=R('Gói dịch vụ',payload.goi)+R('Khách hàng',name)+R('Liên hệ',contact)+R('Link chỉnh sửa phiếu',link)+R('Số phiếu cần điền',numResp+' phiếu')+R('Thời gian',payload.thoiGian);
     if(notes)html+=R('Ghi chú',notes);
   }
