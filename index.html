@@ -410,7 +410,7 @@ footer{position:relative;z-index:2;border-top:1px solid var(--border);padding:40
     <div class="why-card"><div class="why-icon">⚡</div><div><div class="why-title">Xử lý trong 2–3 ngày làm việc</div><div class="why-text">Đa phần đơn hoàn thành trong 2–3 ngày làm việc. Gói gấp xử lý trong ngày — không để bạn chờ lâu.</div></div></div>
     <div class="why-card"><div class="why-icon">💰</div><div><div class="why-title">Khắc phục miễn phí nếu không đạt</div><div class="why-text">Nếu kết quả không đúng yêu cầu, chúng tôi cam kết làm lại và gửi 1 bản mới hoàn toàn miễn phí — không điều kiện.</div></div></div>
     <div class="why-card"><div class="why-icon">🔒</div><div><div class="why-title">Bảo mật thông tin tuyệt đối</div><div class="why-text">Dữ liệu nghiên cứu của bạn được bảo mật hoàn toàn. Không lưu trữ hay chia sẻ cho bên thứ ba.</div></div></div>
-    <div class="why-card"><div class="why-icon">🧑‍🏫</div><div><div class="why-title">Hỗ trợ giải thích kết quả</div><div class="why-text">Không chỉ giao file — hỗ trợ giải thích ý nghĩa các chỉ số để bạn tự tin trình bày trước hội đồng. <strong style="color:var(--accent);">Áp dụng với gói Full Bộ 250.000đ.</strong></div></div></div>
+    <div class="why-card"><div class="why-icon">🧑‍🏫</div><div><div class="why-title">Hỗ trợ giải thích kết quả</div><div class="why-text">Hỗ trợ file giải thích ý nghĩa các chỉ số để bạn tự tin trình bày trước hội đồng. <strong style="color:var(--accent);">Áp dụng với gói Full Bộ 250.000đ.</strong></div></div></div>
     <div class="why-card"><div class="why-icon">📞</div><div><div class="why-title">Hỗ trợ tận tâm qua Zalo/FB</div><div class="why-text">Liên hệ trực tiếp qua Zalo hoặc Messenger. Phản hồi nhanh, tư vấn nhiệt tình từ A đến Z.</div></div></div>
   </div>
 </div>
@@ -441,19 +441,6 @@ footer{position:relative;z-index:2;border-top:1px solid var(--border);padding:40
   </div>
 </div>
 
-<!-- COUNTDOWN -->
-<div class="countdown-bar">
-  <div class="countdown-inner">
-    <div class="cd-label"><span>🔥</span>Ưu đãi giảm 10% cho 5 đơn tiếp theo — kết thúc sau:</div>
-    <div class="cd-timer">
-      <div class="cd-block"><span class="cd-num" id="cd-h">00</span><div class="cd-unit">Giờ</div></div>
-      <div class="cd-sep">:</div>
-      <div class="cd-block"><span class="cd-num" id="cd-m">00</span><div class="cd-unit">Phút</div></div>
-      <div class="cd-sep">:</div>
-      <div class="cd-block"><span class="cd-num" id="cd-s">00</span><div class="cd-unit">Giây</div></div>
-    </div>
-  </div>
-</div>
 
 <!-- FORM -->
 <div class="form-wrap" id="order">
@@ -583,7 +570,7 @@ footer{position:relative;z-index:2;border-top:1px solid var(--border);padding:40
         </div>
         <div class="bank-name" style="font-size:.9rem;">TECHCOMBANK</div>
         <div class="bank-account">1907 2778 6200 16</div><br>
-        <div class="bank-owner">NGUYỄN TẤN PHONG</div>
+        <div class="bank-owner">NGUYỄN TÂN PHONG</div>
       </div>
       <div id="summary-box"></div>
 
@@ -592,7 +579,7 @@ footer{position:relative;z-index:2;border-top:1px solid var(--border);padding:40
         <div class="tx-warn" style="margin-bottom:12px;">
           ⚠️ Vui lòng chuyển khoản theo QR ở trên, sau đó nhập <strong>mã giao dịch</strong> từ tin nhắn ngân hàng gửi cho bạn.<br>
           📌 Mã giao dịch thường có dạng: <strong>FT25076XXXXXX</strong> hoặc dãy số 8–15 ký tự.<br>
-          Chúng tôi sẽ <strong>xác minh thủ công</strong> và liên hệ lại trong 15–30 phút.
+          Chúng tôi sẽ <strong>xác minh thủ công</strong> và liên hệ lại trong 1-2 Tiếng.
         </div>
         <div class="tx-input-wrap">
           <input type="text" id="tx-code" placeholder="Nhập mã giao dịch (VD: FT25076123456)" />
@@ -602,7 +589,7 @@ footer{position:relative;z-index:2;border-top:1px solid var(--border);padding:40
         <div class="tx-success" id="tx-success">
           ⏳ <strong>Đã nhận mã — Đang chờ xác minh!</strong><br>
           Chúng tôi sẽ kiểm tra mã giao dịch trong app ngân hàng và <strong>liên hệ lại qua SĐT/Email trong 15–30 phút</strong>.<br>
-          Nếu chưa nhận được phản hồi sau 30 phút, vui lòng nhắn Zalo <strong>0389518887</strong>.
+          Nếu chưa nhận được phản hồi sau 1-2 tiếng, vui lòng nhắn Zalo <strong>0389518887</strong>.
         </div>
       </div>
       <button class="submit-btn" style="margin-top:20px;background:transparent;border:1.5px solid rgba(168,180,216,.2);color:var(--soft);" onclick="resetForm()">← Đặt thêm dịch vụ</button>
@@ -788,7 +775,7 @@ async function handleSubmit(){
     payload.hoten=name;payload.lienhe=contact;payload.soBien=numVars;
     payload.chiTietBien=vars.map((v,i)=>`Biến ${i+1}: ${v.name} (${v.questions} câu)`).join(' | ');
     payload.bienPhuThuoc=`${depName} (${depQ} câu)`;payload.soMau=numSamples;
-    payload.thoiGian=selDL==='normal'?'Thường (1–2 ngày)':'Gấp (trong ngày)';
+    payload.thoiGian=selDL==='normal'?'Thường (2-3 ngày)':'Gấp (trong ngày)';
     payload.ghiChu=notes||'(Không có)';payload.linkKhaoSat=surveyLink||'(Không có)';payload.soPHieu=surveyNum||'';
     html+=R('Gói dịch vụ',payload.goi)+R('Khách hàng',name)+R('Liên hệ',contact)+R('Số biến độc lập',numVars+' biến');
     vars.forEach((v,i)=>{html+=R(`↳ Biến ${i+1}: ${v.name}`,v.questions+' câu');});
