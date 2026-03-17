@@ -590,8 +590,9 @@ footer{position:relative;z-index:2;border-top:1px solid var(--border);padding:40
       <div class="tx-section">
         <div class="tx-title">💳 Bước cuối — Xác nhận thanh toán</div>
         <div class="tx-warn" style="margin-bottom:12px;">
-          ⚠️ Vui lòng chuyển khoản theo QR ở trên, sau đó nhập <strong>mã giao dịch</strong> từ tin nhắn ngân hàng để xác nhận đơn hàng.<br>
-          Chúng tôi chỉ bắt đầu xử lý sau khi nhận được xác nhận thanh toán.
+          ⚠️ Vui lòng chuyển khoản theo QR ở trên, sau đó nhập <strong>mã giao dịch</strong> từ tin nhắn ngân hàng gửi cho bạn.<br>
+          📌 Mã giao dịch thường có dạng: <strong>FT25076XXXXXX</strong> hoặc dãy số 8–15 ký tự.<br>
+          Chúng tôi sẽ <strong>xác minh thủ công</strong> và liên hệ lại trong 15–30 phút.
         </div>
         <div class="tx-input-wrap">
           <input type="text" id="tx-code" placeholder="Nhập mã giao dịch (VD: FT25076123456)" />
@@ -599,15 +600,15 @@ footer{position:relative;z-index:2;border-top:1px solid var(--border);padding:40
         </div>
         <div class="tx-pending" id="tx-pending"><span class="spinner"></span> Đang gửi xác nhận...</div>
         <div class="tx-success" id="tx-success">
-          ✅ <strong>Xác nhận thành công!</strong><br>
-          Chúng tôi đã nhận được thông tin thanh toán và sẽ bắt đầu xử lý đơn của bạn ngay. Kết quả sẽ được gửi qua SĐT/Email bạn đã để lại.
+          ⏳ <strong>Đã nhận mã — Đang chờ xác minh!</strong><br>
+          Chúng tôi sẽ kiểm tra mã giao dịch trong app ngân hàng và <strong>liên hệ lại qua SĐT/Email trong 15–30 phút</strong>.<br>
+          Nếu chưa nhận được phản hồi sau 30 phút, vui lòng nhắn Zalo <strong>0389518887</strong>.
         </div>
       </div>
       <button class="submit-btn" style="margin-top:20px;background:transparent;border:1.5px solid rgba(168,180,216,.2);color:var(--soft);" onclick="resetForm()">← Đặt thêm dịch vụ</button>
     </div>
   </div>
 </div>
-
 
 <!-- FAQ -->
 <div class="section-wrap" id="faq-section">
@@ -843,6 +844,8 @@ function resetForm(){
   async function xacNhanThanhToan() {
     const code = document.getElementById('tx-code').value.trim();
     if (!code) { alert('Vui lòng nhập mã giao dịch từ tin nhắn ngân hàng.'); return; }
+    if (code.length < 6) { alert('Mã giao dịch quá ngắn. Vui lòng kiểm tra lại tin nhắn ngân hàng.'); return; }
+    if (!/^[A-Za-z0-9]+$/.test(code)) { alert('Mã giao dịch chỉ chứa chữ và số. Vui lòng kiểm tra lại.'); return; }
 
     const btn = document.getElementById('tx-btn');
     btn.disabled = true;
@@ -868,9 +871,9 @@ function resetForm(){
     document.getElementById('tx-pending').classList.remove('show');
     document.getElementById('tx-success').classList.add('show');
     document.getElementById('tx-code').disabled = true;
-    btn.textContent = '✓ Đã xác nhận';
-    btn.style.background = 'rgba(0,229,255,.15)';
-    btn.style.color = 'var(--accent)';
+    btn.textContent = '⏳ Đang xác minh';
+    btn.style.background = 'rgba(245,200,66,.1)';
+    btn.style.color = 'var(--gold)';
   }
 </script>
 </body>
